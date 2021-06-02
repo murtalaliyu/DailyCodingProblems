@@ -2,36 +2,53 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.Scanner;
 
 public class Google {
 	public static void main(String[] args) {
-//		char[][] matrix = {
-//				{'c', 'b', 'a'},
-//				{'d', 'a', 'f'},
-//				{'g', 'h', 'i'}
-//		};
-//		char[][] matrix = {
-//				{'a', 'b'},
-//				{'c', 'g'},
-//				{'b', 'f'}};
-//		//System.out.println((int)'z');
-//		System.out.println(minCols(matrix));
-		
-		//longestAbsPath("dir\\n\\tsubdir1\\n\\t\\tfile1.ext\\n\\t\\tsubsubdir1\\n\\tsubdir2\\n\\t\\tsubsubdir2\\n\\t\\t\\tfile2.ext");
-	
-		ListNode l1 = new ListNode(5); l1.next = new ListNode(6); l1.next.next = new ListNode(7);  
-		ListNode l2 = new ListNode(1); l2.next = new ListNode(4); l2.next.next = new ListNode(8); 
-		ListNode l3 = new ListNode(2); l3.next = new ListNode(12); l3.next.next = new ListNode(24); 
 
-		ListNode[] lists = new ListNode[3];
-		lists[0] = l1;lists[1] = l2;lists[2] = l3;
+			givenPoint();
+	}
+	
+	/*
+    Design a function which returns true if the given point (having x and y coordinate) 
+    forms a square with the previous given points
+Eg: (1,5) - false
+	(2,5) - false  
+	(1,6) - false 
+	(2,6) - true <-
+	xHAshMAp									yHashMAp
+Key  Value										key value 
+1     (1,5),  									6     (1,6)
+	 */
+	public static boolean givenPoint() {
+		Scanner sc = new Scanner(System.in).useDelimiter("[,\\s+]");
 		
-		ListNode res = merge(lists);
+		 while (sc.hasNext()) {
+		        if (sc.hasNextInt())
+		            System.out.println(sc.nextInt());
+		        
+		        
+		        else 
+		            sc.next();
+		    }
 		
-		while (res != null) {
-			System.out.print(res.value + ", ");
-			res = res.next;
-		}
+		return false;
+		
+		// mod4count = 4
+//		int xCount = 0, yCount = 0;
+//		xList = 1,2
+//		yList = 5,6
+		
+//		
+//		int index = 0;
+//		while (index < point.length) {
+//			int 
+//			
+//			
+//			index++;
+//		}
+		
 	}
 	
 /*
@@ -167,6 +184,36 @@ The name of a directory or sub-directory will not contain a period. {HARD}
 		}
 		
 		return head.next;
+	}
+	
+	public static void oldTests() {
+//		char[][] matrix = {
+//		{'c', 'b', 'a'},
+//		{'d', 'a', 'f'},
+//		{'g', 'h', 'i'}
+//};
+//char[][] matrix = {
+//		{'a', 'b'},
+//		{'c', 'g'},
+//		{'b', 'f'}};
+////System.out.println((int)'z');
+//System.out.println(minCols(matrix));
+
+//longestAbsPath("dir\\n\\tsubdir1\\n\\t\\tfile1.ext\\n\\t\\tsubsubdir1\\n\\tsubdir2\\n\\t\\tsubsubdir2\\n\\t\\t\\tfile2.ext");
+
+ListNode l1 = new ListNode(5); l1.next = new ListNode(6); l1.next.next = new ListNode(7);  
+ListNode l2 = new ListNode(1); l2.next = new ListNode(4); l2.next.next = new ListNode(8); 
+ListNode l3 = new ListNode(2); l3.next = new ListNode(12); l3.next.next = new ListNode(24); 
+
+ListNode[] lists = new ListNode[3];
+lists[0] = l1;lists[1] = l2;lists[2] = l3;
+
+ListNode res = merge(lists);
+
+while (res != null) {
+	System.out.print(res.value + ", ");
+	res = res.next;
+}
 	}
 }
 

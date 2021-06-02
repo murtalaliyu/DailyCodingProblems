@@ -1,8 +1,68 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Palantir {
 	public static void main(String[] args) {
-		System.out.println(EgyptianFractions(4,13));
+//		System.out.println(EgyptianFractions(4,13));
+		List<String> list = new ArrayList<>();
+		
+		String[] array = {"the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"};
+		Collections.addAll(list, array);
+		
+		System.out.println(justifyText(list, 16));
+	}
+	
+	/*
+	 * Write an algorithm to justify text. Given a sequence of words and an integer line length k, 
+	 * return a list of strings which represents each line, fully justified.
+
+More specifically, you should have as many words as possible in each line. 
+There should be at least one space between each word. Pad extra spaces when necessary so that 
+each line has exactly length k. Spaces should be distributed as equally as possible, 
+with the extra spaces, if any, distributed starting from the left.
+
+If you can only fit one word on a line, then you should pad the right-hand side with spaces.
+
+Each word is guaranteed not to be longer than k.
+
+For example, given the list of words ["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"]
+ and k = 16, you should return the following:
+
+["the  quick brown", # 1 extra space on the left
+"fox  jumps  over", # 2 extra spaces distributed evenly
+"the   lazy   dog"] # 4 extra spaces distributed evenly
+
+{medium}
+	 */
+	public static List<String> justifyText(List<String> words, int k) {
+		int totalLength = 0, count =0;
+		List<String> res = new ArrayList<>();
+		StringBuilder sb = new StringBuilder();
+		
+		
+		for (String s : words) {
+			int length = s.length();
+			//count += (length+1);
+			if ((totalLength+length+1) > k) {
+				count =1;
+				totalLength = length+1;
+				res.add(sb.toString());
+				sb = new StringBuilder();
+				sb.append(s+" ");
+				System.out.println("in if: " + res + ". Count = " + totalLength);
+			} else {
+				totalLength += length+1;
+				count+=1;
+				sb.append(s+" ");
+				System.out.println("in else: " + res + ". Count = " + totalLength);
+			}
+			
+			
+		}
+		res.add(sb.toString());
+		
+		return res;
 	}
 
 	/*

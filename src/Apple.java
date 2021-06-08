@@ -1,12 +1,13 @@
+import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.Calendar;
 
-/*
- * Implement a job scheduler which takes in a function f and an integer n, and calls f after n milliseconds.
-(Medium) - Apple
- */
-public class JobScheduler {
+public class Apple {
+
+	/*
+	 * Implement a job scheduler which takes in a function f and an integer n, and calls f after n milliseconds.
+	(Medium) - Apple
+	 */
 	public static void main(String[] args) throws InterruptedException {
 		schedule(5);
 	}

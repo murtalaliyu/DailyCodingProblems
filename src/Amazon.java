@@ -1,21 +1,33 @@
 import java.util.ArrayList;
 
-/*
-	Given a list of numbers and a number k, return whether any two numbers from the list add up to k.
-	For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17.
-	Bonus: Can you do this in one pass?
- */
+public class Amazon {
 
-public class GetProductExcludeIndex {
+	/*
+	 * This problem was asked by Amazon.
 
-	public static void main(String[] args) {
+	Given an integer k and a string s, find the length of the longest substring that contains at most k distinct characters.
+
+	For example, given s = "abcba" and k = 2, the longest substring with k distinct characters is "bcb
+	 */
+	public static void x() {
 		
-		ArrayList<Integer> list = new ArrayList<Integer>();
-		list.add(1); list.add(2); list.add(3); list.add(4); list.add(5);
-		//list.add(3); list.add(2); list.add(1);
-		System.out.println("prodList v1: " + productArrv1(list));
+	}
+	
+	/*
+	 * Given a list of integers S and a target number k, 
+	 * write a function that returns a subset of S that adds up to k. 
+	 * If such a subset cannot be made, then return null.
+		Integers can appear more than once in the list. You may assume all numbers in the list are positive.
+		For example, given S = [12, 1, 61, 5, 9, 2] and k = 24, return [12, 9, 2, 1] since it sums up to 24.
+	 */
+	static ArrayList<Integer> subsetAdd(ArrayList<Integer> list, int k) {
+		int temp = 0;
 		
-		System.out.println("prodList v2: " + productArrv2(list));
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i) <= k) {
+				temp = k;
+			}
+		}
 	}
 	
 	/*
@@ -26,6 +38,7 @@ public class GetProductExcludeIndex {
 		For example, if our input was [1, 2, 3, 4, 5], 
 		the expected output would be [120, 60, 40, 30, 24]. 
 		If our input was [3, 2, 1], the expected output would be [2, 3, 6].
+		COMPLETE
 	 */
 	// O(n^2)
 	public static ArrayList<Integer> productArrv1(ArrayList<Integer> list) {
@@ -43,7 +56,6 @@ public class GetProductExcludeIndex {
 		
 		return prodList;
 	}
-	
 	// O(n)
 	public static ArrayList<Integer> productArrv2(ArrayList<Integer> list) {
 		ArrayList<Integer> prodList = new ArrayList<Integer>();
@@ -61,6 +73,5 @@ public class GetProductExcludeIndex {
 		
 		return prodList;
 	}
-
 	
 }

@@ -5,13 +5,57 @@ import java.util.List;
 public class Palantir {
 	public static void main(String[] args) {
 //		System.out.println(EgyptianFractions(4,13));
-		List<String> list = new ArrayList<>();
+//		List<String> list = new ArrayList<>();
+//		
+//		String[] array = {"the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"};
+//		Collections.addAll(list, array);
+//		
+//		System.out.println(justifyText(list, 16));
 		
-		String[] array = {"the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"};
-		Collections.addAll(list, array);
-		
-		System.out.println(justifyText(list, 16));
+		int[] list = greaterPermutation(new int[] {2,1,3});
+		for (int i : list) {
+			System.out.print(i + ", ");
+		}
 	}
+	
+	/*
+	 * This problem was asked by Palantir.
+		Given a number represented by a list of digits, find the next greater permutation of a number, 
+		in terms of lexicographic ordering. If there is not greater permutation possible, 
+		return the permutation with the lowest value/ordering.
+		For example, the list [1,2,3] should return [1,3,2]. The list [1,3,2] should return [2,1,3]. 
+		The list [3,2,1] should return [1,2,3].
+		Can you perform the operation without allocating extra memory (disregarding the input memory)? (Hard)
+	 	COMPLETE
+	 */
+	public static int[] greaterPermutation(int[] nums) {
+		int i = nums.length-2;
+		while (i >= 0 && nums[i+1] <= nums[i]) {
+			i--;
+		}
+		if (i >= 0) {
+			int j = nums.length-1;
+			while (nums[j] <= nums[i]) {
+				j--;
+			}
+			swap(nums, i, j);
+		}
+		reverse(nums, i+1);
+		return nums;
+	}
+	public static void reverse(int[] nums, int start) {
+		int i = start, j = nums.length-1;
+		while (i < j) {
+			swap(nums, i, j);
+			i++; j--;
+		}
+	}
+	public static void swap(int[] nums, int i, int j) {
+		int temp = nums[i];
+		nums[i] = nums[j];
+		nums[j] = temp;
+	}
+	
 	
 	/*
 	 * Write an algorithm to justify text. Given a sequence of words and an integer line length k, 
@@ -100,9 +144,3 @@ COMPLETE (brute force)
 		 */
 	}
 }
-
-// 4/13 -> 1/13 + 1/13 + 1/13 + 1/13
-/*
-	1,13
-	1,13
-*/

@@ -7,7 +7,65 @@ import java.util.Scanner;
 public class Google {
 	public static void main(String[] args) {
 
-			givenPoint();
+			//givenPoint();
+		char[] arr = segregateRGB(new char[] {'G', 'B', 'R', 'R', 'B', 'R', 'G'});
+		for (char i : arr) {
+			System.out.print(i + ", ");
+		}
+	}
+	
+	/*
+	 * This problem was asked by Google.
+
+	Given an array of strictly the characters 'R', 'G', and 'B', segregate the values of the array so that all 
+	the Rs come first, the Gs come second, and the Bs come last. You can only swap elements of the array.
+	
+	Do this in linear time and in-place.
+	
+	For example, given the array ['G', 'B', 'R', 'R', 'B', 'R', 'G'], it should 
+	become ['R', 'R', 'R', 'G', 'G', 'B', 'B'].{HARD}
+	COMPLETE
+	 */
+	public static char[] segregateRGB(char[] arr) {
+		int left = 0, right = arr.length-1;
+		
+		// move Rs to the left
+		while (true) {
+			while (arr[left] == 'R' && left < right) {
+				left++;
+			}
+			while (arr[right] != 'R' && left < right) {
+				right--;
+			}
+			if (left >= right) {
+				break;
+			}
+			// swap
+			char temp = arr[left];
+			arr[left] = arr[right];
+			arr[right] = temp;
+		}
+		
+		right = arr.length-1;		// reset right
+		
+		// move Bs to the right
+		while (true) {
+			while (arr[left] != 'B' && left < right) {
+				left++;
+			}
+			while (arr[right] == 'B' && left < right) {
+				right--;
+			}
+			if (left >= right) {
+				break;
+			}
+			// swap
+			char temp = arr[left];
+			arr[left] = arr[right];
+			arr[right] = temp;
+		}
+		
+		return arr;
 	}
 	
 	/*

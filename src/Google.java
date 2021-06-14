@@ -1,17 +1,51 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Google {
 	public static void main(String[] args) {
 
 			//givenPoint();
-		char[] arr = segregateRGB(new char[] {'G', 'B', 'R', 'R', 'B', 'R', 'G'});
-		for (char i : arr) {
-			System.out.print(i + ", ");
-		}
+//		char[] arr = segregateRGB(new char[] {'G', 'B', 'R', 'R', 'B', 'R', 'G'});
+//		for (char i : arr) {
+//			System.out.print(i + ", ");
+//		}
+		
+		System.out.println(occursOnce(new int[]{13, 19, 13, 13}));
+	}
+	
+	/*
+	 * This problem was asked by Google.
+
+		Given an array of integers where every integer occurs three times except for one integer, 
+		which only occurs once, find and return the non-duplicated integer.
+		
+		For example, given [6, 1, 3, 3, 3, 6, 6], return 1. Given [13, 19, 13, 13], return 19.
+		[1,3,3,3,6,6,6], [13,13,13,19]
+		Do this in O(N) time and O(1) space. {HARD}
+	 */
+	public static int occursOnce(int[] arr) {
+		
+	}
+	
+	/*
+	 * This problem was asked by Google.
+		Given a stack of N elements, interleave the first half of the stack with the second
+		 half reversed using only one other queue. This should be done in-place.
+		Recall that you can only push or pop from a stack, and enqueue or dequeue from a queue.
+		For example, if the stack is [1, 2, 3, 4, 5], it should become [1, 5, 2, 4, 3]. 
+		If the stack is [1, 2, 3, 4], it should become [1, 4, 2, 3].
+		Hint: Try working backwards from the end state. (medium)
+	 */
+	public static void interleaveStack(Stack<Integer> stack, int N) {
+		Queue<Integer> queue = new LinkedList<>();
+		
 	}
 	
 	/*

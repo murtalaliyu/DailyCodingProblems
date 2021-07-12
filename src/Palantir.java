@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,10 +13,46 @@ public class Palantir {
 //		
 //		System.out.println(justifyText(list, 16));
 		
-		int[] list = greaterPermutation(new int[] {2,1,3});
-		for (int i : list) {
-			System.out.print(i + ", ");
+//		int[] list = greaterPermutation(new int[] {2,1,3});
+//		for (int i : list) {
+//			System.out.print(i + ", ");
+//		}
+		
+		System.out.println(h_index(new int[] {50, 40, 33, 23, 12, 11, 8, 5, 1, 0}, 10));
+	}
+	
+	/*
+	 * This problem was asked by Palantir.
+		In academia, the h-index is a metric used to calculate the impact of a researcher's papers. 
+		It is calculated as follows:
+		A researcher has index h if at least h of her N papers have h citations each. 
+		If there are multiple h satisfying this formula, the maximum is chosen.
+		For example, suppose N = 5, and the respective citations of each paper are [4, 3, 0, 1, 5]. 
+		Then the h-index would be 3, since the researcher has 3 papers with at least 3 citations.
+		Given a list of paper citations of a researcher, calculate their h-index. (easy)
+		e.g. [4, 0, 1, 5] = 2, [0, 1, 4, 5]
+		COMPLETE. time = O(n), space = O(1)
+	 */
+	public static int h_index(int[] papers, int N) {
+		// base case
+		if (papers.length == 0) {
+			return 0;
 		}
+		
+		Arrays.sort(papers); // [0, 1, 3, 4, 5]
+		
+		int count = 1;
+		
+		for (int i = N-1; i >= 0; i--) {
+			if (count < papers[i]) {
+				count++;
+			} else if(count==papers[i]) {
+				return count;
+			}else if(count> papers[i]) {
+				return count-1;
+			}
+		}
+		return count;
 	}
 	
 	/*

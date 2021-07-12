@@ -10,8 +10,36 @@ public class Facebook {
 //		System.out.println(pickRandom(list));
 		
 	//	int[] arr = {2, 1, 2};
-		int[] arr = {3, 0, 1, 2};
-		System.out.println(waterTrapped(arr));
+//		int[] arr = {3, 0, 1, 2};
+//		System.out.println(waterTrapped(arr));
+		
+		System.out.println(maxProfit(new int[]{100, 180, 260, 310, 40, 535, 695}));
+	}
+	
+	/*
+	 * This problem was asked by Facebook.
+
+		Given a array of numbers representing the stock prices of a company in chronological order, 
+		write a function that calculates the maximum profit you could have made from buying and selling 
+		that stock once. You must buy before you can sell it.
+		
+		For example, given [9, 11, 8, 5, 7, 10], you should return 5, 
+		since you could buy the stock at 5 dollars and sell it at 10 dollars.{Easy}
+		COMPLETE, time = O(n^2), space = O(1)
+	 */
+	public static int maxProfit(int[] prices) {
+		int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
+		int difference = 0;
+		
+		for (int i = 0; i < prices.length; i++) {
+			for (int j = i+1; j < prices.length; j++) {
+				if (prices[j] - prices[i] > difference) {
+					difference = prices[j] - prices[i];
+				}
+			}
+		}
+		
+		return difference;
 	}
 	
 	/*

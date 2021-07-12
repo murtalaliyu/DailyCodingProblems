@@ -17,7 +17,62 @@ public class Google {
 //			System.out.print(i + ", ");
 //		}
 		
-		System.out.println(occursOnce(new int[]{13, 19, 13, 13}));
+//		System.out.println(occursOnce(new int[]{13, 19, 13, 13}));
+		
+		List<List<Integer>> list = new ArrayList<>();
+		List<Integer> l1 = new ArrayList<>(); l1.add(0); l1.add(0);
+		List<Integer> l2 = new ArrayList<>(); l2.add(1); l2.add(2);
+		List<Integer> l3 = new ArrayList<>(); l3.add(2); l3.add(2);
+		List<Integer> l4 = new ArrayList<>(); l4.add(4); l4.add(0);
+		List<Integer> l5 = new ArrayList<>(); l5.add(3); l5.add(3);
+		List<Integer> l6 = new ArrayList<>(); l6.add(0); l6.add(3);
+		list.add(l1); list.add(l2); list.add(l3); list.add(l4); list.add(l5); list.add(l6);
+		System.out.println(chessboard_bishops(list, 5));
+	}
+	
+	/*
+	 * This problem was asked by Google.
+
+		On our special chessboard, two bishops attack each other if they share the same diagonal. 
+		This includes bishops that have another bishop located between them, i.e. bishops can attack through pieces.
+		
+		You are given N bishops, represented as (row, column) tuples on a M by M chessboard. 
+		Write a function to count the number of pairs of bishops that attack each other. 
+		The ordering of the pair doesn't matter: (1, 2) is considered the same as (2, 1).
+		
+		For example, given M = 5 and the list of bishops:
+			
+		(0, 0)
+			
+		(1, 2)
+			
+		(2, 2)
+			
+		(4, 0)
+		
+		The board would look like this:
+		
+		[b 0 0 b 0]
+		[0 0 b 0 0]
+		[0 0 b 0 0]
+		[0 0 0 b 0]
+		[b 0 0 0 0]
+		
+		You should return 2, since bishops 1 and 3 attack each other, as well as bishops 3 and 4. (medium)
+		COMPLETED. time = O(n^2), space = O(1)
+	 */
+	public static int chessboard_bishops(List<List<Integer>> bishops, int M) {
+		int count = 0;
+		for (List<Integer> bishop1 : bishops) {
+			for (List<Integer> bishop2 : bishops) {
+				if (bishop1 != bishop2) {
+					if (Math.abs(bishop1.get(0) - bishop2.get(0)) == (Math.abs((bishop1.get(1) - bishop2.get(1))))) {
+						count++;
+					}
+				}
+			}
+		}
+		return count/2;
 	}
 	
 	/*

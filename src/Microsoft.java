@@ -3,11 +3,62 @@ import java.util.List;
 
 public class Microsoft {
 	public static void main(String[] args) {
-		List<String> list = new ArrayList<>();
-		list.add("geeks"); list.add("for"); //list.add("bedbath");list.add("and");list.add("beyond");
-		String string = "geeksgeeks";
+//		List<String> list = new ArrayList<>();
+//		list.add("geeks"); list.add("for"); //list.add("bedbath");list.add("and");list.add("beyond");
+//		String string = "geeksgeeks";
+//		
+//		System.out.println(listOfString(list,string));
 		
-		System.out.println(listOfString(list,string));
+		System.out.println(findNth(56));
+	}
+	
+	/*
+	 * This problem was asked by Microsoft.
+		A number is considered perfect if its digits sum up to exactly 10.
+		Given a positive integer n, return the n-th perfect number.
+		For example, given 1, you should return 19. Given 2, you should return 28. (easy)
+		15
+	 */
+
+	public static int findNth(int n)
+	{
+	int count = 0;
+	for (int curr = 1;; curr++) {
+
+	 // Find sum of digits in current no.
+	int sum = 0;
+	for (int x = curr; x > 0; x = x / 10)
+	sum = sum + x % 10;
+
+	 // If sum is 10, we increment count
+	if (sum == 10)
+	count++;
+
+	 // If count becomes n, we return current
+	// number.
+	if (count == n)
+	return curr;
+	}
+	}
+
+
+	// Contributed by _omg
+	public static int nthPerfectNumber(int n) {
+		// base case
+		if (n <= 0) {	// ???
+			return 0;
+		}
+		
+		int count = 0;
+		int temp = n, temp2 = n;
+		while (n > 0) {
+			temp = n%10;		// 
+			n = n/10;			// 
+			//temp2 = (10 * n) + temp;
+			count += temp;		// 
+		}
+		int unit = 10 - count;
+		
 	}
 
 	/*

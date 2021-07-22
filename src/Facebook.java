@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Facebook {
@@ -13,7 +14,30 @@ public class Facebook {
 //		int[] arr = {3, 0, 1, 2};
 //		System.out.println(waterTrapped(arr));
 		
-		System.out.println(maxProfit(new int[]{100, 180, 260, 310, 40, 535, 695}));
+//		System.out.println(maxProfit(new int[]{100, 180, 260, 310, 40, 535, 695}));
+	}
+	
+	/*
+	 * This problem was asked by Facebook.
+		Suppose you are given two lists of n points, one list p1, p2, ..., pn on the line y = 0 
+		and the other list q1, q2, ..., qn on the line y = 1. Imagine a set of n line segments 
+		connecting each point pi to qi. Write an algorithm to determine how many pairs of the line 
+		segments intersect. (Easy)
+	 */
+	public static int pairsIntersect(List<Integer> p, List<Integer> q) {
+		// base case 1: p is empty, // base case 2: p.size != q.size 
+		if (p.size() == 0 || p.size() != q.size()) {
+			return 0;
+		}
+		
+		int p0 = p.get(0);
+		int q0 = q.get(0);
+		for (int i = 1; i < p.size(); i++) {
+			int pi = p.get(i);
+			int qi = q.get(i);
+			
+			
+		}
 	}
 	
 	/*

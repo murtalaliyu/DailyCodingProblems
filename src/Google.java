@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,6 +9,16 @@ import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
+class Node {
+	int data;
+	Node next;
+	public Node(int data, Node next) {
+		this.data = data; this.next = next;
+	}
+	public Node(int data) {
+		this.data = data;
+	}
+}
 public class Google {
 	public static void main(String[] args) {
 
@@ -19,15 +30,65 @@ public class Google {
 		
 //		System.out.println(occursOnce(new int[]{13, 19, 13, 13}));
 		
-		List<List<Integer>> list = new ArrayList<>();
-		List<Integer> l1 = new ArrayList<>(); l1.add(0); l1.add(0);
-		List<Integer> l2 = new ArrayList<>(); l2.add(1); l2.add(2);
-		List<Integer> l3 = new ArrayList<>(); l3.add(2); l3.add(2);
-		List<Integer> l4 = new ArrayList<>(); l4.add(4); l4.add(0);
-		List<Integer> l5 = new ArrayList<>(); l5.add(3); l5.add(3);
-		List<Integer> l6 = new ArrayList<>(); l6.add(0); l6.add(3);
-		list.add(l1); list.add(l2); list.add(l3); list.add(l4); list.add(l5); list.add(l6);
-		System.out.println(chessboard_bishops(list, 5));
+//		List<List<Integer>> list = new ArrayList<>();
+//		List<Integer> l1 = new ArrayList<>(); l1.add(0); l1.add(0);
+//		List<Integer> l2 = new ArrayList<>(); l2.add(1); l2.add(2);
+//		List<Integer> l3 = new ArrayList<>(); l3.add(2); l3.add(2);
+//		List<Integer> l4 = new ArrayList<>(); l4.add(4); l4.add(0);
+//		List<Integer> l5 = new ArrayList<>(); l5.add(3); l5.add(3);
+//		List<Integer> l6 = new ArrayList<>(); l6.add(0); l6.add(3);
+//		list.add(l1); list.add(l2); list.add(l3); list.add(l4); list.add(l5); list.add(l6);
+//		System.out.println(chessboard_bishops(list, 5));
+		
+		Node n1 = new Node(1, new Node(6, new Node(8, null)));
+		Node n2 = new Node(9, new Node(11, new Node(12, null)));
+		Node n3 = new Node(5, new Node(10, new Node(13, null)));
+		
+		List<Node> l = new ArrayList<>();
+		l.add(n1); l.add(n2); l.add(n3);
+		
+		Node n = mergeAndSort(l);
+		
+		while (n != null) {
+			System.out.print(n.data + "->");
+			n = n.next;
+		}
+	}
+	
+	/*
+	 * This problem was asked by Google.
+		Given k sorted singly linked lists, write a function to merge all the lists into one
+		 sorted singly linked list.{medium}
+		 COMPLETED: time = O(N*logK), space = O(N*K)
+	 */
+	public static Node mergeAndSort(List<Node> lists) {
+		
+		//base case 1: empty lists
+		if (lists.size() == 0) {
+			return null;
+		}
+		
+		// O(NlogN)
+		PriorityQueue<Node> q = new PriorityQueue<>((c,d) -> c.data-d.data);
+		
+		// 
+		for (Node n : lists) {
+			while (n != null) {
+				q.add(new Node(n.data));
+				System.out.println(n.data);
+				n = n.next;
+			}
+		}
+		
+		Node head = q.poll();
+		Node current = head;
+		
+		while(!q.isEmpty()) {
+			current.next = q.poll();
+			current = current.next;
+		}
+		
+		return head;
 	}
 	
 	/*

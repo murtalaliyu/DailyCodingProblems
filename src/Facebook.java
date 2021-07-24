@@ -6,6 +6,14 @@ import java.util.Map;
 
 import com.sun.org.apache.xpath.internal.operations.String;
 
+/*
+ * 		// integer to string
+		String x = Integer.toString(5);
+		// string to integer
+		int y = Character.getNumericValue(x.charAt(0));
+		System.out.println(y);
+ */
+
 public class Facebook {
 	public static void main(String[] args) {
 //		ArrayList<Integer> list = new ArrayList<Integer>();

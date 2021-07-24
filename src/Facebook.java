@@ -302,6 +302,8 @@ COMPLETE
 		1113213211
 		31131211131221
 		13211311123113112211
+		
+		COMPLETE: time = O(N), space = O(1)
 	 */
 	public static String lookAndSay(int input) {
 		// base case 1: input <1?

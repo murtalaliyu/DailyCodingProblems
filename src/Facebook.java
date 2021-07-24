@@ -279,6 +279,60 @@ COMPLETE
 		
 		return sum;
 	}
+	
+	/*
+	 * This problem was asked by Facebook
+	 *  Look and Say
+		Implement a function that outputs the Look and Say sequence:
+		1
+		11
+		21
+		1211
+		111221
+		312211
+		13112221
+		1113213211
+		31131211131221
+		13211311123113112211
+	 */
+	public static String lookAndSay(int input) {
+		// base case 1: input <1?
+		if (input < 1) {
+			return "10";
+		}
+		// base case 2: input = 1
+		if (input == 1) {
+			return "1" + input;
+		}
+		
+		// convert int to string
+		String stringInput = Integer.toString(input);
+		String output = "";
+		
+		// keep track of previous and count
+		char prev = 0; int count = 1;
+		
+		// iterate over stringInput
+		for (int i = 0; i < stringInput.length(); i++) {
+			char c = stringInput.charAt(i);
+			if (prev == 0) {
+				// do nothing
+			} else {
+				if (prev == c) {
+					count++;
+				} else {
+					output += Integer.toString(count) + prev;
+					count = 1;
+				}
+			}
+			
+			prev = c;
+		}
+		output += Integer.toString(count) + prev;
+		
+		return output;
+	}
+	
 }
 
 class binaryTree {

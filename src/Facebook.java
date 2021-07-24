@@ -240,6 +240,8 @@ COMPLETE
 	 * In addition, note that the Roman numeral system uses subtractive notation for numbers such as IV and XL.
 	 * 
 	 * For the input XIV, for instance, you should return 14. (Medium)
+	 * 
+	 * COMPLETE: time = O(n), space = O(1) <- if map is already given
 	 */
 	static HashMap<Character, Integer> romanMap = new HashMap<Character, Integer>();
 	public static int romanNumeral(String roman) {

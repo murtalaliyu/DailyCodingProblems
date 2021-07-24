@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.sun.org.apache.xpath.internal.operations.String;
+
 public class Facebook {
 	public static void main(String[] args) {
 //		ArrayList<Integer> list = new ArrayList<Integer>();
@@ -15,6 +17,7 @@ public class Facebook {
 //		System.out.println(waterTrapped(arr));
 		
 //		System.out.println(maxProfit(new int[]{100, 180, 260, 310, 40, 535, 695}));
+		
 	}
 	
 	/*
@@ -218,6 +221,61 @@ COMPLETE
 	}
 	static XORLList get() {
 		
+	}
+	
+	/*
+	 * This problem was asked by Facebook
+	 * 
+	 * Given a number in Ronam numeral format, convert it to decimal.
+	 * 
+	 * The values of Roman numerals are as follows:
+	 * {'M', 1000},
+	 * {'D', 500},
+	 * {'C', 100},
+	 * {'L', 50},
+	 * {'X', 10},
+	 * {'V', 5},
+	 * {'I', 1}
+	 * 
+	 * In addition, note that the Roman numeral system uses subtractive notation for numbers such as IV and XL.
+	 * 
+	 * For the input XIV, for instance, you should return 14. (Medium)
+	 */
+	static HashMap<Character, Integer> romanMap = new HashMap<Character, Integer>();
+	public static int romanNumeral(String roman) {
+		romanMap.put('M', 1000); romanMap.put('D', 500); romanMap.put('C', 100); romanMap.put('L', 50); romanMap.put('X', 10); romanMap.put('V', 5); romanMap.put('I', 1);
+		
+		// edge case 1: empty string
+		if (roman.length() == 0) {
+			return 0;
+		}
+		// edge case 2: invalid string
+		for (int i = 0; i < roman.length(); i++) {
+			char currChar = roman.charAt(i);
+			if (currChar != 'M' && currChar != 'D' && currChar != 'C' && currChar != 'L' && currChar != 'X' && currChar != 'V' && currChar != 'I') {
+				return 0;
+			}
+		}
+		
+		// start from end to check for subtractive notation
+		char prev = 0; int sum = 0;
+		for (int i = roman.length()-1; i >= 0; i--) {
+			char currChar = roman.charAt(i);
+			
+			if (prev == 0) {
+				sum += romanMap.get(currChar);
+			} else {
+				if (romanMap.get(currChar) < romanMap.get(prev)) {
+					sum -= romanMap.get(currChar);
+				} else {
+					sum += romanMap.get(currChar);
+				}
+			}
+			
+			prev = currChar;
+		}
+		
+		return sum;
 	}
 }
 

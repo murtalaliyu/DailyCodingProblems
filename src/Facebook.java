@@ -343,6 +343,83 @@ COMPLETE
 		return output;
 	}
 	
+	/*
+	 * This problem was asked by Facebook
+	 * Write a function that returns whether two words are exactly "one edit" away using the following signature:
+		bool OneEditApart(string s1, string s2);
+		An edit is:
+		Inserting one character anywhere in the word (including at the beginning and end)
+		Removing one character
+		Replacing one character
+		Examples:
+		OneEditApart("cat", "dog") = false
+		OneEditApart("cat", "cats") = true
+		OneEditApart("cat", "cut") = true
+		OneEditApart("cat", "cast") = true
+		OneEditApart("cat", "at") = true
+		OneEditApart("cat", "act") = false
+		
+		COMPLETE: time = O(N) due to 1 for loop, space = O(N) due to hash-map
+	 */
+	public static boolean OneEditApart(String s1, String s2) {
+		// edge case 1: empty strings
+		if (s1.isEmpty() || s2.isEmpty()) {
+			return false;
+		}
+		// edge case 2: length of one string is at least 2 more than the other
+		if (Math.abs(s1.length()-s2.length()) > 1) {
+			return false;
+		}
+		
+		int s1Length = s1.length();
+		int s2Length = s2.length();
+		
+		// populate smaller and bigger string
+		String smallerString = "", biggerString = "";
+		if (s1Length <= s2Length) {
+			smallerString = s1;
+			biggerString = s2;
+		}  else {
+			smallerString = s2;
+			biggerString = s1;
+		}
+		System.out.println("smaller string: " + smallerString);
+		System.out.println("bigger string: " + biggerString);
+		
+		// populate map with string of smaller length
+		HashMap<Integer, Character> map = new HashMap<Integer, Character>();
+		map = populateMap(map, smallerString);
+		
+		// iterate over bigger string and check if count > 1
+		int containedCount = 0, inplaceCount = 0;
+		for (int i = 0; i < biggerString.length(); i++) {
+			char currChar = biggerString.charAt(i);
+			// not contained
+			if (!map.containsValue(currChar)) {
+				containedCount++;
+				if (containedCount > 1) {
+					return false;
+				}
+			}
+			// not in-place
+			if (s1Length == s2Length) {
+				if (currChar != smallerString.charAt(i)) {
+					inplaceCount++;
+					if (inplaceCount > 1) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
+	}
+	public static HashMap<Integer, Character> populateMap(HashMap<Integer, Character> map, String s) {
+		for (int i = 0; i < s.length(); i++) {
+			map.put(i, s.charAt(i));
+		}
+		return map;
+	}
+	
 }
 
 class binaryTree {
